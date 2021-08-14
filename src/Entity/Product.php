@@ -40,11 +40,11 @@ class Product
     private $price;
 
     /**
-     * Stock of the product
+     * Size of the product
      * @ORM\Column(type="integer")
      * @Assert\PositiveOrZero
      */
-    private $stock;
+    private $size;
 
     /**
      * Image of the product
@@ -54,6 +54,11 @@ class Product
      * )
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Brand;
 
     public function getId(): ?int
     {
@@ -96,14 +101,14 @@ class Product
         return $this;
     }
 
-    public function getStock(): ?int
+    public function getSize(): ?int
     {
-        return $this->stock;
+        return $this->size;
     }
 
-    public function setStock(int $stock): self
+    public function setSize(int $size): self
     {
-        $this->stock = $stock;
+        $this->size = $size;
 
         return $this;
     }
@@ -136,5 +141,17 @@ class Product
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getBrand(): ?string
+    {
+        return $this->Brand;
+    }
+
+    public function setBrand(string $Brand): self
+    {
+        $this->Brand = $Brand;
+
+        return $this;
     }
 }
