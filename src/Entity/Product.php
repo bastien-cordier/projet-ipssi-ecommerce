@@ -27,6 +27,11 @@ class Product
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $brand;
+
+    /**
      * Description of the product
      * @ORM\Column(type="text")
      */
@@ -54,11 +59,6 @@ class Product
      * )
      */
     private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Brand;
 
     public function getId(): ?int
     {
@@ -145,12 +145,12 @@ class Product
 
     public function getBrand(): ?string
     {
-        return $this->Brand;
+        return $this->brand;
     }
 
-    public function setBrand(string $Brand): self
+    public function setBrand(string $brand): self
     {
-        $this->Brand = $Brand;
+        $this->brand = $brand;
 
         return $this;
     }
