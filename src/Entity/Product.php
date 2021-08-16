@@ -41,15 +41,13 @@ class Product
 
     /**
      * Price of the product
-     * @ORM\Column(type="float")
-     * @Assert\PositiveOrZero
+     * @ORM\Column(type="string", length=255)
      */
     private $price;
 
     /**
      * Size of the product
-     * @ORM\Column(type="integer")
-     * @Assert\PositiveOrZero
+     * @ORM\Column(type="string", length=255)
      */
     private $size;
 
