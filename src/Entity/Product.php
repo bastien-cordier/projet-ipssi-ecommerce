@@ -45,11 +45,6 @@ class Product
      */
     private $price;
 
-    /**
-     * Size of the product
-     * @ORM\Column(type="string", length=255)
-     */
-    private $size;
 
     /**
      * Image of the product
@@ -59,6 +54,11 @@ class Product
      * )
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Gender;
 
     public function getId(): ?int
     {
@@ -101,18 +101,6 @@ class Product
         return $this;
     }
 
-    public function getSize(): ?int
-    {
-        return $this->size;
-    }
-
-    public function setSize(int $size): self
-    {
-        $this->size = $size;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -132,7 +120,7 @@ class Product
     public function deleteImage()
     {
         if (!empty($this->image)) {
-            $path = __DIR__ . '/../../public/uploads/images_products/' . $this->image;
+            $path = __DIR__ . '/../../public/uploads/' . $this->image;
             unlink($path);
         }
         return true;
@@ -151,6 +139,19 @@ class Product
     public function setBrand(string $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+
+    public function getGender(): ?string
+    {
+        return $this->Gender;
+    }
+
+    public function setGender(string $Gender): self
+    {
+        $this->Gender = $Gender;
 
         return $this;
     }
