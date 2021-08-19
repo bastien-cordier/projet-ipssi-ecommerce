@@ -3,14 +3,22 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\ProductRepository;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *     normalizationContext={
+ *         "groups"={"product"}
+ *     }
+ * )
  * @ORM\HasLifecycleCallbacks()
  */
 class Product
@@ -19,46 +27,53 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"product"})
      */
     private $id;
 
     /**
      * Name of the product
      * @ORM\Column(type="string", length=255)
+     * @Groups({"product"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"product"})
      */
     private $brand;
 
     /**
      * Description of the product
      * @ORM\Column(type="text")
+     * @Groups({"product"})
      */
     private $description;
 
     /**
      * Price of the product
      * @ORM\Column(type="string", length=255)
+     * @Groups({"product"})
      */
     private $price;
 
 
     /**
-     * Image of the product
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      max = 255,
-     * )
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @Groups({"product"})
      */
     private $Gender;
+
+    /**
+     * @var MediaObject|null
+     *
+     * @ORM\ManyToOne(targetEntity=MediaObject::class)
+     * @ORM\JoinColumn(nullable=true)
+     * @ApiProperty(iri="http://schema.org/image")
+     * @Groups({"product"})
+     */
+    public $image;
 
     public function getId(): ?int
     {
@@ -99,31 +114,6 @@ class Product
         $this->price = $price;
 
         return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Event trigger when a product is deleted in order to delete the image file
-     * @ORM\PostRemove
-     */
-    public function deleteImage()
-    {
-        if (!empty($this->image)) {
-            $path = __DIR__ . '/../../public/uploads/' . $this->image;
-            unlink($path);
-        }
-        return true;
     }
 
     public function __toString()
