@@ -63,7 +63,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
      */
-    private $Gender;
+    private $gender;
 
     /**
      * @var MediaObject|null
@@ -136,12 +136,12 @@ class Product
 
     public function getGender(): ?string
     {
-        return $this->Gender;
+        return $this->gender;
     }
 
-    public function setGender(string $Gender): self
+    public function setGender(string $gender): self
     {
-        $this->Gender = $Gender;
+        $this->gender = $gender;
 
         return $this;
     }
