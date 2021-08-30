@@ -75,6 +75,12 @@ class Product
      */
     public $image;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"product"})
+     */
+    private $date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,6 +148,18 @@ class Product
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
