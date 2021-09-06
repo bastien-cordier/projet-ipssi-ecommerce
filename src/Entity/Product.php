@@ -7,6 +7,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\ProductRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -19,6 +21,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  *         "groups"={"product"}
  *     }
  * )
+ * 
+ * Filtre en fonction de la marque
+ * @ApiFilter(SearchFilter::class, properties={"brand": "exact"})
+ * 
  * @ORM\HasLifecycleCallbacks()
  */
 class Product
