@@ -9,6 +9,7 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -24,7 +25,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * 
  * Filtre en fonction de la marque
  * @ApiFilter(SearchFilter::class, properties={"brand": "exact"})
- * 
+ * @ApiFilter(SearchFilter::class, properties={"brand": "exact", "gender":"exact"})
+ * @ApiFilter(RangeFilter::class, properties={"price"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Product
