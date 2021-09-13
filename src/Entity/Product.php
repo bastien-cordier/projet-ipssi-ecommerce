@@ -36,6 +36,7 @@ class Product
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"product"})
+     * @Groups({"panier"})
      */
     private $id;
 
@@ -43,12 +44,14 @@ class Product
      * Name of the product
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
+     * @Groups({"panier"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
+     * @Groups({"panier"})
      */
     private $brand;
 
@@ -63,6 +66,7 @@ class Product
      * Price of the product
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
+     * @Groups({"panier"})
      */
     private $price;
 
@@ -79,6 +83,7 @@ class Product
      * @ORM\ManyToOne(targetEntity=MediaObject::class)
      * @ORM\JoinColumn(nullable=true)
      * @ApiProperty(iri="http://schema.org/image")
+     * @Groups({"panier"})
      * @Groups({"product"})
      */
     public $image;
