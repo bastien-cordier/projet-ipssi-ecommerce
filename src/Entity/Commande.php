@@ -4,9 +4,19 @@ namespace App\Entity;
 
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 
 /**
  * @ORM\Entity(repositoryClass=CommandeRepository::class)
+ * @ApiResource(
+ *     normalizationContext={
+ *         "groups"={"commande"}
+ *     },
+ * )
+ * @ApiFilter(DateFilter::class, properties={"createdAt"})
  */
 class Commande
 {
@@ -20,27 +30,32 @@ class Commande
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"commande"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"commande"})
      */
     private $product;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"commande"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"commande"})
      */
     private $chiffreAffaire;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"commande"})
      */
     private $createdAt;
 

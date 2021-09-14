@@ -85,6 +85,8 @@ class MediaObject
      *
      * @ORM\Column(nullable=true)
      * @Groups({"product"})
+     * @Groups({"panier"})
+     * @Groups({"commande"})
      */
     public $filePath;
 
@@ -93,6 +95,4 @@ class MediaObject
     {
         return $this->id;
     }
-
-    
 }

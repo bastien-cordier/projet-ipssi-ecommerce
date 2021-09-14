@@ -32,6 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * 
      * @Groups({"user:read", "user:write"})
+     * @Groups({"commande"})
      */
     private $email;
 
@@ -48,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    
+
 
     /**
      * @ORM\Column(type="string", length=255)

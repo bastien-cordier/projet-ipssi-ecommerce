@@ -45,6 +45,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
      * @Groups({"panier"})
+     * @Groups({"commande"})
      */
     private $name;
 
@@ -52,6 +53,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
      * @Groups({"panier"})
+     * @Groups({"commande"})
      */
     private $brand;
 
@@ -67,6 +69,7 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @Groups({"product"})
      * @Groups({"panier"})
+     * @Groups({"commande"})
      */
     private $price;
 
@@ -85,6 +88,7 @@ class Product
      * @ApiProperty(iri="http://schema.org/image")
      * @Groups({"panier"})
      * @Groups({"product"})
+     * @Groups({"commande"})
      */
     public $image;
 
