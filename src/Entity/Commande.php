@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\CommandeRepository;
+use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+
+/**
+ * @ORM\Entity(repositoryClass=CommandeRepository::class)
+ * @ApiResource(
+ *     normalizationContext={
+ *         "groups"={"commande"}
+ *     },
+ * )
+ * @ApiFilter(DateFilter::class, properties={"date"})
+ */
+class Commande
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $chiffreAffaire;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getChiffreAffaire(): ?int
+    {
+        return $this->chiffreAffaire;
+    }
+
+    public function setChiffreAffaire(int $chiffreAffaire): self
+    {
+        $this->chiffreAffaire = $chiffreAffaire;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+}
