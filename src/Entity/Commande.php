@@ -42,6 +42,11 @@ class Commande
     private $product;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $size;
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"commande"})
      */
@@ -58,6 +63,8 @@ class Commande
      * @Groups({"commande"})
      */
     private $createdAt;
+
+
 
     public function getId(): ?int
     {
@@ -84,6 +91,18 @@ class Commande
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getSize(): ?int
+    {
+        return $this->size;
+    }
+
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
 
         return $this;
     }
